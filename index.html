@@ -105,9 +105,17 @@
             transition: transform 0.4s ease;
             z-index: 4;
         }
+        
+        /* Klasy wywoływane przez kliknięcie */
         .envelope.open .top-flap {
             transform: rotateX(180deg);
             z-index: 1;
+        }
+        .envelope.open .front {
+            display: none !important;
+        }
+        .envelope.open .top-flap {
+            display: none !important;
         }
         
         /* Główny List */
@@ -133,26 +141,23 @@
         }
         
         .envelope.open {
-            height: auto;
-            background: transparent;
-            box-shadow: none;
+            height: auto !important;
+            background: transparent !important;
+            box-shadow: none !important;
             cursor: default;
-        }
-        .envelope.open .front, .envelope.open .top-flap {
-            display: none;
         }
 
         .envelope.open .letter {
-            position: relative;
-            transform: none;
-            left: 0;
-            bottom: 0;
-            width: 100%;
+            position: relative !important;
+            transform: none !important;
+            left: 0 !important;
+            bottom: 0 !important;
+            width: 100% !important;
             max-width: 600px;
-            height: auto;
-            z-index: 5;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            opacity: 1;
+            height: auto !important;
+            z-index: 5 !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
+            opacity: 1 !important;
             animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
@@ -219,7 +224,6 @@
             box-sizing: border-box;
         }
 
-        /* Efekt hover dla kafelka */
         .tile:hover {
             transform: translateY(-5px) scale(1.03);
             background: #fff0f3;
@@ -227,7 +231,6 @@
             box-shadow: 0 10px 20px rgba(255, 51, 102, 0.2);
         }
 
-        /* Efekt kliknięcia kafelka */
         .tile.revealed {
             background: linear-gradient(135deg, #ff3366 0%, #ff5e62 100%);
             color: #ffffff;
@@ -260,7 +263,7 @@
         .heart-seal::after { left: -15px; top: 0; }
         .envelope.open .heart-seal {
             opacity: 0;
-            display: none;
+            display: none !important;
         }
     </style>
 </head>
@@ -279,7 +282,7 @@
 
     <!-- Konstrukcja główna -->
     <div class="card-container">
-        <div class="envelope" onclick="openEnvelope(this)">
+        <div class="envelope" id="mainEnvelope" onclick="openEnvelope()">
             <div class="top-flap"></div>
             <div class="heart-seal"></div>
             <div class="front"></div>
@@ -292,4 +295,3 @@
                 <div class="grid-title">Odkryj sekrety:</div>
                 
                 <div class="tiles-grid">
-                    <div class="tile" onclick="revealTile(this, 'Jesteś absolutnie najwspanialsza i najpiękniejsza na całym świecie! 🥰')">Kim jesteś? 🤔</div>
