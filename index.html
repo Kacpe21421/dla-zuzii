@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dla Zuzi ❤️</title>
+    <title>Dla Najwspanialszej Zuzi ❤️</title>
     <style>
         body {
             margin: 0;
@@ -12,14 +12,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff4e50 0%, #f9d423 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
             overflow-y: auto;
             position: relative;
         }
 
-        /* Pływające serduszka w tle */
+        /* Dynamiczne, bogate tło z serduszkami */
         .hearts {
             position: fixed;
             top: 0;
@@ -36,8 +36,8 @@
             list-style: none;
             width: 20px;
             height: 20px;
-            background: rgba(255, 255, 255, 0.35);
-            animation: animate 25s linear infinite;
+            background: rgba(255, 255, 255, 0.45);
+            animation: animate 20s linear infinite;
             bottom: -150px;
             transform: rotate(45deg);
         }
@@ -46,47 +46,49 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            background: rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.45);
             border-radius: 50%;
         }
         .heart-bg::before { top: -10px; left: 0; }
         .heart-bg::after { left: -10px; top: 0; }
 
         @keyframes animate {
-            0% { transform: translateY(0) rotate(45deg); opacity: 1; border-radius: 0; }
-            100% { transform: translateY(-1200px) rotate(725deg); opacity: 0; border-radius: 50%; }
+            0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(-1400px) rotate(900deg); opacity: 0; }
         }
 
-        /* Kontener główny */
+        /* Kontener główny strony */
         .card-container {
             z-index: 10;
-            perspective: 1000px;
+            perspective: 1200px;
             padding: 40px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .envelope {
-            width: 320px;
-            height: 220px;
+            width: 340px;
+            height: 230px;
             background: #ffffff;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
             border-radius: 0 0 15px 15px;
             position: relative;
             cursor: pointer;
-            transition: transform 0.5s, height 0.6s ease-in-out;
+            transition: transform 0.4s, height 0.6s ease-in-out;
         }
         .envelope:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
         }
         .front {
             position: absolute;
             width: 0; height: 0;
-            border-right: 160px solid #f4f5f7;
-            border-left: 160px solid #f4f5f7;
-            border-top: 110px solid transparent;
-            border-bottom: 110px solid #e1e4e8;
+            border-right: 170px solid #f4f5f7;
+            border-left: 170px solid #f4f5f7;
+            border-top: 115px solid transparent;
+            border-bottom: 115px solid #e1e4e8;
             bottom: 0;
             left: 0;
             z-index: 3;
@@ -96,9 +98,9 @@
             position: absolute;
             top: 0; left: 0;
             width: 0; height: 0;
-            border-left: 160px solid transparent;
-            border-right: 160px solid transparent;
-            border-top: 110px solid #ff4b6e;
+            border-left: 170px solid transparent;
+            border-right: 170px solid transparent;
+            border-top: 115px solid #ff3366;
             transform-origin: top;
             transition: transform 0.4s ease;
             z-index: 4;
@@ -108,26 +110,25 @@
             z-index: 1;
         }
         
-        /* Rozbudowany, potężny list */
+        /* Główny List */
         .letter {
             position: absolute;
-            background: #fffdf6;
-            width: 290px;
-            height: 190px;
+            background: #fffdf9;
+            width: 310px;
+            height: 200px;
             left: 15px;
             bottom: 15px;
             transition: transform 0.6s ease-in-out, opacity 0.4s;
             z-index: 2;
-            padding: 25px;
+            padding: 30px 20px;
             box-sizing: border-box;
-            border-radius: 8px;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
             text-align: center;
-            overflow: hidden;
             opacity: 0;
         }
         
@@ -137,10 +138,7 @@
             box-shadow: none;
             cursor: default;
         }
-        .envelope.open .front {
-            display: none;
-        }
-        .envelope.open .top-flap {
+        .envelope.open .front, .envelope.open .top-flap {
             display: none;
         }
 
@@ -150,79 +148,112 @@
             left: 0;
             bottom: 0;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             height: auto;
-            min-height: 450px;
             z-index: 5;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             opacity: 1;
-            animation: popIn 0.5s ease-out forwards;
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
         @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
+            0% { transform: scale(0.6); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
 
         h1 {
-            color: #ff4b6e;
-            font-size: 28px;
+            color: #ff3366;
+            font-size: 30px;
             margin-top: 0;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         .main-text {
-            color: #333;
+            color: #222;
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 25px;
             font-weight: 500;
         }
 
-        /* Sekcja twardych faktów */
-        .facts-box {
+        /* SEKCJA INTERAKTYWNYCH KAFELKÓW */
+        .grid-title {
+            font-size: 16px;
+            color: #ff3366;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+        
+        .tiles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             width: 100%;
-            background: #ffeef2;
-            border-left: 5px solid #ff4b6e;
-            padding: 15px;
-            box-sizing: border-box;
-            text-align: left;
-            border-radius: 4px;
             margin-top: 10px;
         }
-        .facts-box h2 {
+        @media(max-width: 500px) {
+            .tiles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tile {
+            background: #ffffff;
+            border: 2px solid #ffccd5;
+            border-radius: 12px;
+            padding: 20px 15px;
+            min-height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ff3366;
             font-size: 16px;
-            color: #d61c4e;
-            margin-top: 0;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(255, 78, 80, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            user-select: none;
+            text-align: center;
+            box-sizing: border-box;
         }
-        .facts-list {
-            margin: 0;
-            padding-left: 20px;
-            color: #444;
+
+        /* Efekt hover dla kafelka */
+        .tile:hover {
+            transform: translateY(-5px) scale(1.03);
+            background: #fff0f3;
+            border-color: #ff3366;
+            box-shadow: 0 10px 20px rgba(255, 51, 102, 0.2);
+        }
+
+        /* Efekt kliknięcia kafelka */
+        .tile.revealed {
+            background: linear-gradient(135deg, #ff3366 0%, #ff5e62 100%);
+            color: #ffffff;
+            border-color: transparent;
+            transform: rotateY(360deg);
+            box-shadow: 0 8px 20px rgba(255, 51, 102, 0.3);
             font-size: 14px;
-        }
-        .facts-list li {
-            margin-bottom: 8px;
+            font-weight: 500;
             line-height: 1.4;
         }
 
         .heart-seal {
             position: absolute;
-            top: 95px; left: 145px;
+            top: 100px; left: 155px;
             width: 30px; height: 30px;
-            background: #ff4b6e;
+            background: #ff3366;
             transform: rotate(45deg);
             z-index: 5;
             transition: opacity 0.3s;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .heart-seal::before, .heart-seal::after {
             content: '';
             position: absolute;
             width: 30px; height: 30px;
-            background: #ff4b6e;
+            background: #ff3366;
             border-radius: 50%;
         }
         .heart-seal::before { top: -15px; left: 0; }
@@ -237,45 +268,28 @@
 
     <!-- Animowane tło -->
     <div class="hearts">
-        <div class="heart-bg" style="left: 10%; width: 30px; height: 30px; animation-delay: 0s;"></div>
-        <div class="heart-bg" style="left: 25%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 12s;"></div>
-        <div class="heart-bg" style="left: 70%; width: 25px; height: 25px; animation-delay: 4s;"></div>
-        <div class="heart-bg" style="left: 40%; width: 40px; height: 40px; animation-delay: 0s; animation-duration: 18s;"></div>
-        <div class="heart-bg" style="left: 85%; width: 20px; height: 20px; animation-delay: 7s;"></div>
-        <div class="heart-bg" style="left: 55%; width: 35px; height: 35px; animation-delay: 3s; animation-duration: 20s;"></div>
+        <div class="heart-bg" style="left: 5%; width: 25px; height: 25px; animation-delay: 0s; animation-duration: 15s;"></div>
+        <div class="heart-bg" style="left: 15%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 11s;"></div>
+        <div class="heart-bg" style="left: 30%; width: 35px; height: 35px; animation-delay: 1s; animation-duration: 18s;"></div>
+        <div class="heart-bg" style="left: 45%; width: 20px; height: 20px; animation-delay: 4s; animation-duration: 14s;"></div>
+        <div class="heart-bg" style="left: 60%; width: 40px; height: 40px; animation-delay: 0s; animation-duration: 22s;"></div>
+        <div class="heart-bg" style="left: 75%; width: 18px; height: 18px; animation-delay: 6s; animation-duration: 13s;"></div>
+        <div class="heart-bg" style="left: 90%; width: 30px; height: 30px; animation-delay: 3s; animation-duration: 16s;"></div>
     </div>
 
-    <!-- Interaktywna koperta -->
+    <!-- Konstrukcja główna -->
     <div class="card-container">
         <div class="envelope" onclick="openEnvelope(this)">
             <div class="top-flap"></div>
             <div class="heart-seal"></div>
             <div class="front"></div>
             <div class="letter">
-                <h1>Dla Zuzi, Mojej Jedynej ❤️</h1>
+                <h1>Dla Najwspanialszej Zuzi ❤️</h1>
                 <p class="main-text">
-                    Zuzia, wiem, że bywa ciężko i ludzie potrafią zajść za skórę, ale posłuchaj mnie teraz uważnie. Chcę, żebyś zamknęła oczy, wzięła głęboki oddech i zapamiętała to raz na zawsze: jesteś absolutnie najbardziej niesamowitą, najwspanialszą i najlepszą dziewczyną na tej planecie. Nie pozwól nikomu wmówić sobie czegokolwiek innego! 🥰
+                    Zuzia, olej wszystko i wszystkich, bo szkoda Twoich nerwów. Ludzie potrafią być beznadziejni, ale Ty jesteś kompletnie z innej ligi. Chcę Ci przypomnieć kilka najważniejszych, niepodważalnych faktów o Tobie. Kliknij w każdy kafelek poniżej, żeby poznać prawdę! 👇
                 </p>
                 
-                <div class="facts-box">
-                    <h2>⚠️ Oficjalne i niepodważalne fakty:</h2>
-                    <ul class="facts-list">
-                        <li>Wszyscy wokół, którzy próbują popsuć Ci humor albo rzucają kłody pod nogi, to zwykłe kurwy i nie są warci ani jednej Twojej sekundy ani jednej złej myśli.</li>
-                        <li>Twoja wartość jest kosmiczna – jesteś inteligentna, piękna i masz wielkie serce.</li>
-                        <li>Masz mnie, a ja stoję za Tobą murem w każdej sekundzie. Razem rozniesiemy każdy problem.</li>
-                        <li>Jesteś absolutnym numerem jeden i nikomu nie wolno tego kwestionować! 💪✨</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function openEnvelope(envelope) {
-            if (!envelope.classList.contains('open')) {
-                envelope.classList.add('open');
-            }
-        }
-    </script>
-</body>
-</html>
+                <div class="grid-title">Odkryj sekrety:</div>
+                
+                <div class="tiles-grid">
+                    <div class="tile" onclick="revealTile(this, 'Jesteś absolutnie najwspanialsza i najpiękniejsza na całym świecie! 🥰')">Kim jesteś? 🤔</div>
