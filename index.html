@@ -1,297 +1,1026 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dla Najwspanialszej Zuzi ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ff4e50 0%, #f9d423 100%);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            overflow-x: hidden;
-            overflow-y: auto;
-            position: relative;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff527f">
+<title>Dla Najwspanialszej Zuzi ❤️</title>
 
-        /* Dynamiczne, bogate tło z serduszkami */
-        .hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-            pointer-events: none;
-        }
-        .heart-bg {
-            position: absolute;
-            display: block;
-            list-style: none;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.45);
-            animation: animate 20s linear infinite;
-            bottom: -150px;
-            transform: rotate(45deg);
-        }
-        .heart-bg::before, .heart-bg::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.45);
-            border-radius: 50%;
-        }
-        .heart-bg::before { top: -10px; left: 0; }
-        .heart-bg::after { left: -10px; top: 0; }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
 
-        @keyframes animate {
-            0% { transform: translateY(0) rotate(45deg); opacity: 1; }
-            100% { transform: translateY(-1400px) rotate(900deg); opacity: 0; }
-        }
+:root {
+  --pink: #ff3974;
+  --pink-light: #ff8eb2;
+  --rose: #ffcadb;
+  --purple: #a65cf5;
+  --ink: #432333;
+  --white: #fffafc;
+}
 
-        /* Kontener główny strony */
-        .card-container {
-            z-index: 10;
-            perspective: 1200px;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            box-sizing: border-box;
-        }
+* { box-sizing: border-box; }
 
-        .envelope {
-            width: 340px;
-            height: 230px;
-            background: #ffffff;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            border-radius: 0 0 15px 15px;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.4s, height 0.6s ease-in-out;
-        }
-        .envelope:hover {
-            transform: translateY(-8px) scale(1.02);
-        }
-        .front {
-            position: absolute;
-            width: 0; height: 0;
-            border-right: 170px solid #f4f5f7;
-            border-left: 170px solid #f4f5f7;
-            border-top: 115px solid transparent;
-            border-bottom: 115px solid #e1e4e8;
-            bottom: 0;
-            left: 0;
-            z-index: 3;
-            border-radius: 0 0 15px 15px;
-        }
-        .top-flap {
-            position: absolute;
-            top: 0; left: 0;
-            width: 0; height: 0;
-            border-left: 170px solid transparent;
-            border-right: 170px solid transparent;
-            border-top: 115px solid #ff3366;
-            transform-origin: top;
-            transition: transform 0.4s ease;
-            z-index: 4;
-        }
-        
-        /* Klasy wywoływane przez kliknięcie */
-        .envelope.open .top-flap {
-            transform: rotateX(180deg);
-            z-index: 1;
-        }
-        .envelope.open .front {
-            display: none !important;
-        }
-        .envelope.open .top-flap {
-            display: none !important;
-        }
-        
-        /* Główny List */
-        .letter {
-            position: absolute;
-            background: #fffdf9;
-            width: 310px;
-            height: 200px;
-            left: 15px;
-            bottom: 15px;
-            transition: transform 0.6s ease-in-out, opacity 0.4s;
-            z-index: 2;
-            padding: 30px 20px;
-            box-sizing: border-box;
-            border-radius: 10px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            text-align: center;
-            opacity: 0;
-        }
-        
-        .envelope.open {
-            height: auto !important;
-            background: transparent !important;
-            box-shadow: none !important;
-            cursor: default;
-        }
+html { scroll-behavior: smooth; }
 
-        .envelope.open .letter {
-            position: relative !important;
-            transform: none !important;
-            left: 0 !important;
-            bottom: 0 !important;
-            width: 100% !important;
-            max-width: 600px;
-            height: auto !important;
-            z-index: 5 !important;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
-            opacity: 1 !important;
-            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at 12% 12%, #ffd1e3 0%, transparent 36%),
+    radial-gradient(ellipse at 90% 20%, #ffc4c7 0%, transparent 34%),
+    radial-gradient(ellipse at 50% 100%, #ffc1dc 0%, transparent 45%),
+    linear-gradient(145deg, #fff0f5, #ffe0eb 48%, #ffd3e3);
+}
 
-        @keyframes popIn {
-            0% { transform: scale(0.6); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+/* Delikatna tekstura tła */
 
-        h1 {
-            color: #ff3366;
-            font-size: 30px;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-        .main-text {
-            color: #222;
-            font-size: 16px;
-            line-height: 1.7;
-            margin-bottom: 25px;
-            font-weight: 500;
-        }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .22;
+  background-image: radial-gradient(#ff6699 0.7px, transparent 0.7px);
+  background-size: 21px 21px;
+}
 
-        /* SEKCJA INTERAKTYWNYCH KAFELKÓW */
-        .grid-title {
-            font-size: 16px;
-            color: #ff3366;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-        
-        .tiles-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            width: 100%;
-            margin-top: 10px;
-        }
-        @media(max-width: 500px) {
-            .tiles-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+/* Warstwa animowanych serc */
 
-        .tile {
-            background: #ffffff;
-            border: 2px solid #ffccd5;
-            border-radius: 12px;
-            padding: 20px 15px;
-            min-height: 80px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            font-weight: bold;
-            color: #ff3366;
-            font-size: 16px;
-            box-shadow: 0 4px 10px rgba(255, 78, 80, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            user-select: none;
-            text-align: center;
-            box-sizing: border-box;
-        }
+.heart-world {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
 
-        .tile:hover {
-            transform: translateY(-5px) scale(1.03);
-            background: #fff0f3;
-            border-color: #ff3366;
-            box-shadow: 0 10px 20px rgba(255, 51, 102, 0.2);
-        }
+.floating-heart {
+  position: absolute;
+  bottom: -70px;
+  color: white;
+  opacity: 0;
+  filter: drop-shadow(0 4px 9px #ff397433);
+  animation: floatHeart var(--duration, 12s) linear forwards;
+  will-change: transform, opacity;
+}
 
-        .tile.revealed {
-            background: linear-gradient(135deg, #ff3366 0%, #ff5e62 100%);
-            color: #ffffff;
-            border-color: transparent;
-            transform: rotateY(360deg);
-            box-shadow: 0 8px 20px rgba(255, 51, 102, 0.3);
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1.4;
-        }
+@keyframes floatHeart {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(.6);
+    opacity: 0;
+  }
+  10% { opacity: var(--heart-opacity, .75); }
+  85% { opacity: var(--heart-opacity, .75); }
+  100% {
+    transform: translate3d(var(--drift, 40px), -115vh, 0)
+      rotate(var(--rotation, 35deg)) scale(1.25);
+    opacity: 0;
+  }
+}
 
-        .heart-seal {
-            position: absolute;
-            top: 100px; left: 155px;
-            width: 30px; height: 30px;
-            background: #ff3366;
-            transform: rotate(45deg);
-            z-index: 5;
-            transition: opacity 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .heart-seal::before, .heart-seal::after {
-            content: '';
-            position: absolute;
-            width: 30px; height: 30px;
-            background: #ff3366;
-            border-radius: 50%;
-        }
-        .heart-seal::before { top: -15px; left: 0; }
-        .heart-seal::after { left: -15px; top: 0; }
-        .envelope.open .heart-seal {
-            opacity: 0;
-            display: none !important;
-        }
-    </style>
+/* Błyszczące drobinki */
+
+.sparkle {
+  position: fixed;
+  z-index: 0;
+  color: white;
+  pointer-events: none;
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: .25; transform: scale(.65) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.3) rotate(35deg); }
+}
+
+/* Główna scena */
+
+.scene {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  padding: 46px 18px 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1400px;
+}
+
+.envelope {
+  position: relative;
+  width: min(100%, 370px);
+  height: 245px;
+  flex-shrink: 0;
+  border-radius: 0 0 18px 18px;
+  background: linear-gradient(145deg, #fff, #ffe8f0);
+  box-shadow: 0 24px 65px #b82e6330, 0 5px 15px #a52a4d17;
+  cursor: pointer;
+  transition: transform .4s ease, box-shadow .4s ease;
+  isolation: isolate;
+}
+
+.envelope:not(.open):hover {
+  transform: translateY(-8px) rotate(-1deg);
+  box-shadow: 0 32px 75px #b82e6345;
+}
+
+.envelope:not(.open) {
+  animation: envelopeIntro 1s .2s both;
+}
+
+@keyframes envelopeIntro {
+  from { opacity: 0; transform: translateY(25px) scale(.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.envelope-base {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  background: linear-gradient(145deg, #fffafd, #ffc6d9);
+  z-index: 1;
+}
+
+.envelope-base::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, transparent 49.5%, #ffb2cb 50%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  opacity: .9;
+}
+
+.envelope-base::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(35deg, #fff1f6, #ffabc8);
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 57%;
+  z-index: 5;
+  background: linear-gradient(150deg, #ff789f, #ff3974);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform .75s cubic-bezier(.2,.8,.2,1), opacity .3s;
+  filter: drop-shadow(0 5px 6px #a52a4d14);
+}
+
+.seal {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  font-size: 25px;
+  background: linear-gradient(145deg, #ff6c9a, #e91e63);
+  box-shadow: 0 5px 15px #b5174b40, inset 0 2px 3px #ffffff65;
+  transition: opacity .3s, transform .4s;
+  animation: sealPulse 2s infinite;
+}
+
+@keyframes sealPulse {
+  0%, 100% { box-shadow: 0 5px 15px #b5174b40, 0 0 0 0 #ff397430; }
+  50% { box-shadow: 0 5px 15px #b5174b40, 0 0 0 11px #ff397400; }
+}
+
+.envelope-hint {
+  position: absolute;
+  z-index: 7;
+  width: 100%;
+  left: 0;
+  bottom: 17px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #bd3566;
+  animation: hintPulse 1.7s infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: .65; }
+  50% { opacity: 1; }
+}
+
+/* List */
+
+.letter {
+  display: none;
+  width: 100%;
+  padding: clamp(24px, 5vw, 43px);
+  border-radius: 27px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(155deg, #fffdfd, #fff4f8 75%, #ffe8f1);
+  border: 1px solid #ffffffd9;
+  box-shadow: 0 30px 90px #a52a4d25, 0 4px 20px #ffffffa0;
+  transform-origin: center top;
+}
+
+.envelope.open {
+  width: min(100%, 780px);
+  height: auto;
+  background: transparent;
+  box-shadow: none;
+  cursor: default;
+  animation: none;
+}
+
+.envelope.open .envelope-base,
+.envelope.open .flap,
+.envelope.open .seal,
+.envelope.open .envelope-hint {
+  display: none;
+}
+
+.envelope.open .letter {
+  display: block;
+  animation: letterReveal .85s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes letterReveal {
+  0% { opacity: 0; transform: translateY(35px) scale(.93); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.letter::before {
+  content: "♡";
+  position: absolute;
+  top: -55px;
+  right: 5px;
+  font-size: 175px;
+  line-height: 1;
+  color: #ff39740a;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+.letter::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 3px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, transparent, #ff7ba5, #ffcae0, #ff7ba5, transparent);
+}
+
+.letter-content {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 99px;
+  color: #d82e68;
+  background: #ffdfeb;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 19px;
+}
+
+h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(34px, 7vw, 57px);
+  line-height: 1.12;
+  letter-spacing: -1.8px;
+  margin: 0 0 20px;
+  color: #a51e50;
+}
+
+.gradient-text {
+  background: linear-gradient(110deg, #e91e63, #ff6999, #b44bda);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.intro {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #785566;
+  margin: 0 0 28px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 25px 0;
+  color: #ff6697;
+  font-size: 17px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, #ffc1d5);
+}
+
+.divider::after {
+  background: linear-gradient(90deg, #ffc1d5, transparent);
+}
+
+.section-heading {
+  text-align: center;
+  margin: 28px 0 8px;
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #a51e50;
+  font-size: clamp(23px, 4vw, 31px);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #a47c8d;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0 auto 24px;
+}
+
+/* Kafelki */
+
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.tile {
+  position: relative;
+  min-height: 142px;
+  padding: 20px 16px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid #ffcada;
+  border-radius: 21px;
+  background: linear-gradient(145deg, #fff, #fff5f9);
+  box-shadow: 0 5px 16px #bd39650a, inset 0 1px 0 white;
+  text-align: center;
+  color: #c12c61;
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    transform .35s cubic-bezier(.2,.8,.2,1),
+    box-shadow .35s,
+    border-color .35s,
+    background .35s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: linear-gradient(135deg, #ffe3ee, #fff, #f9e2ff);
+  transition: opacity .3s;
+}
+
+.tile::after {
+  content: "✦";
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  color: #ff9cbd;
+  font-size: 16px;
+  opacity: 0;
+  transform: rotate(-40deg) scale(.4);
+  transition: .35s;
+}
+
+.tile:hover {
+  transform: translateY(-6px) scale(1.025);
+  border-color: #ff7ca6;
+  box-shadow: 0 14px 28px #ed518b1e, 0 0 0 3px #ffffff85;
+}
+
+.tile:hover::before { opacity: 1; }
+.tile:hover::after { opacity: 1; transform: rotate(15deg) scale(1); }
+
+.tile:active {
+  transform: scale(.96);
+}
+
+.tile:focus-visible {
+  outline: 3px solid #df3472;
+  outline-offset: 4px;
+}
+
+.tile-icon {
+  display: block;
+  font-size: 29px;
+  margin-bottom: 10px;
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+}
+
+.tile:hover .tile-icon {
+  transform: translateY(-3px) rotate(-9deg) scale(1.2);
+}
+
+.tile-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.tile-hint {
+  display: block;
+  margin-top: 7px;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #c18a9e;
+  font-weight: 700;
+}
+
+/* Odkryte wyznania */
+
+.tile.revealed {
+  color: white;
+  border-color: transparent;
+  background: linear-gradient(135deg, #ff568a, #e82e72 65%, #b94ce1);
+  box-shadow: 0 12px 28px #d9317040, inset 0 1px 0 #ffffff55;
+  animation: tileReveal .6s cubic-bezier(.16,1,.3,1);
+}
+
+.tile.revealed::before { opacity: 0; }
+.tile.revealed::after { content: "♡"; color: white; opacity: .75; }
+
+.tile.revealed .tile-icon {
+  animation: heartBeat .8s ease-in-out;
+}
+
+.tile.revealed .tile-label {
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.tile.revealed .tile-hint { display: none; }
+
+@keyframes tileReveal {
+  0% { transform: scale(.9) rotateY(-12deg); }
+  55% { transform: scale(1.04) rotateY(5deg); }
+  100% { transform: scale(1) rotateY(0); }
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.35) rotate(-10deg); }
+  50% { transform: scale(.95) rotate(10deg); }
+  75% { transform: scale(1.2); }
+}
+
+.progress {
+  margin-top: 24px;
+  padding: 16px 18px;
+  border-radius: 17px;
+  background: #ffedf4;
+  border: 1px solid #ffdae7;
+}
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 11px;
+  color: #a72a57;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.progress-track {
+  height: 8px;
+  border-radius: 99px;
+  overflow: hidden;
+  background: #ffd0e0;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff8bb1, #ed3477, #bb53d7);
+  transition: width .55s cubic-bezier(.2,.8,.2,1);
+}
+
+.love-note {
+  display: none;
+  margin-top: 22px;
+  padding: 23px 18px;
+  text-align: center;
+  border-radius: 21px;
+  background: linear-gradient(135deg, #ffdfeb, #f8e1ff);
+  animation: letterReveal .7s ease both;
+}
+
+.love-note.visible { display: block; }
+
+.love-note .big-heart {
+  font-size: 38px;
+  display: block;
+  animation: heartBeat 1.2s infinite;
+}
+
+.love-note h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #b1265a;
+  font-size: 25px;
+  margin: 10px 0;
+}
+
+.love-note p {
+  font-size: 14px;
+  color: #845267;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.replay-button {
+  display: block;
+  margin: 17px auto 0;
+  padding: 11px 17px;
+  border: 1px solid #ef9dbb;
+  border-radius: 99px;
+  background: #ffffffb8;
+  color: #b42a60;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.replay-button:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px #c33d7018;
+}
+
+.signature {
+  margin-top: 28px;
+  text-align: center;
+  color: #b47790;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.signature .signature-heart {
+  display: block;
+  margin: 5px 0;
+  font-size: 27px;
+  color: #ef3977;
+  animation: heartBeat 1.7s infinite;
+}
+
+.footer-hearts {
+  margin-top: 18px;
+  text-align: center;
+  letter-spacing: 8px;
+  font-size: 18px;
+  animation: footerFloat 3s ease-in-out infinite;
+}
+
+@keyframes footerFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Efekty kliknięcia */
+
+.burst-heart {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  font-size: var(--size, 20px);
+  left: var(--x);
+  top: var(--y);
+  animation: burst .95s cubic-bezier(.12,.8,.3,1) forwards;
+}
+
+@keyframes burst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.2) rotate(0);
+  }
+  15% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(-50% + var(--dx)),
+      calc(-50% + var(--dy))
+    ) scale(1.3) rotate(var(--rot));
+  }
+}
+
+/* Telefon */
+
+@media (max-width: 520px) {
+  .scene { padding: 24px 12px 40px; }
+  .letter { padding: 26px 17px; border-radius: 22px; }
+  .tiles-grid { gap: 10px; }
+  .tile { min-height: 135px; padding: 16px 10px; border-radius: 17px; }
+  .tile-icon { font-size: 26px; }
+  .tile-label { font-size: 13px; }
+  .intro { font-size: 14px; line-height: 1.85; }
+  .eyebrow { font-size: 9px; letter-spacing: 1px; }
+}
+
+@media (max-width: 350px) {
+  .tiles-grid { grid-template-columns: 1fr; }
+  .tile { min-height: 110px; }
+}
+
+/* Szacunek dla ustawień ograniczających ruch */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Animowane tło -->
-    <div class="hearts">
-        <div class="heart-bg" style="left: 5%; width: 25px; height: 25px; animation-delay: 0s; animation-duration: 15s;"></div>
-        <div class="heart-bg" style="left: 15%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 11s;"></div>
-        <div class="heart-bg" style="left: 30%; width: 35px; height: 35px; animation-delay: 1s; animation-duration: 18s;"></div>
-        <div class="heart-bg" style="left: 45%; width: 20px; height: 20px; animation-delay: 4s; animation-duration: 14s;"></div>
-        <div class="heart-bg" style="left: 60%; width: 40px; height: 40px; animation-delay: 0s; animation-duration: 22s;"></div>
-        <div class="heart-bg" style="left: 75%; width: 18px; height: 18px; animation-delay: 6s; animation-duration: 13s;"></div>
-        <div class="heart-bg" style="left: 90%; width: 30px; height: 30px; animation-delay: 3s; animation-duration: 16s;"></div>
-    </div>
+<div class="heart-world" id="heartWorld" aria-hidden="true"></div>
 
-    <!-- Konstrukcja główna -->
-    <div class="card-container">
-        <div class="envelope" id="mainEnvelope" onclick="openEnvelope()">
-            <div class="top-flap"></div>
-            <div class="heart-seal"></div>
-            <div class="front"></div>
-            <div class="letter">
-                <h1>Dla Najwspanialszej Zuzi ❤️</h1>
-                <p class="main-text">
-                    Zuzia, olej wszystko i wszystkich, bo szkoda Twoich nerwów. Ludzie potrafią być beznadziejni, ale Ty jesteś kompletnie z innej ligi. Chcę Ci przypomnieć kilka najważniejszych, niepodważalnych faktów o Tobie. Kliknij w każdy kafelek poniżej, żeby poznać prawdę! 👇
-                </p>
-                
-                <div class="grid-title">Odkryj sekrety:</div>
-                
-                <div class="tiles-grid">
+<div class="scene">
+  <div class="envelope" id="mainEnvelope">
+
+    <div class="envelope-base"></div>
+    <div class="flap"></div>
+    <div class="seal">♥</div>
+    <div class="envelope-hint">Kliknij, aby otworzyć 💌</div>
+
+    <article class="letter">
+      <div class="letter-content">
+
+        <div class="eyebrow">♡ mała wiadomość dla Ciebie ♡</div>
+
+        <h1>Dla najwspanialszej <span class="gradient-text">Zuzi</span> ❤️</h1>
+
+        <p class="intro">
+          Zuzia, olej wszystko i wszystkich, bo szkoda Twoich nerwów.
+          Ludzie potrafią być beznadziejni, ale Ty jesteś kompletnie z innej ligi.
+          Nie pozwól nikomu sprawić, żebyś zapomniała, ile jesteś warta.
+          <br><br>
+          Przygotowałem dla Ciebie kilka bardzo ważnych faktów.
+          Niektóre są słodkie, inne prawdziwe w stu procentach,
+          ale wszystkie zasługują na to, żebyś o nich pamiętała. 🥹
+          <br><br>
+          Kliknij każdy kafelek. Obiecuję, że warto. 👇🏻
+        </p>
+
+        <div class="divider">💗 ✧ 💗</div>
+
+        <h2 class="section-heading">Coś, o czym musisz pamiętać</h2>
+        <p class="section-subtitle">
+          12 małych przypomnień, które zawsze możesz otworzyć. ♡
+        </p>
+
+        <div class="tiles-grid" id="tilesGrid">
+
+          <button class="tile" type="button"
+            data-message="Jesteś wspaniała. Nie dlatego, że musisz być idealna, ale dlatego, że jesteś sobą. I to naprawdę wystarczy. ❤️">
+            <span class="tile-icon">🌷</span>
+            <span class="tile-label">Odkryj swój pierwszy komplement</span>
+            <span class="tile-hint">Kliknij mnie ♡</span>
+          </button>
+
+          <button class="tile" type="button"
+            data-message="Jesteś kochana bardziej, niż czasami potrafisz sobie wyobrazić. Nawet w te dni, kiedy sama o tym zapominasz. 🫶">
+            <span class="tile-icon">💌</span>
+            <span class="tile-label">Coś prosto z serca</span>
+            <span class="tile-hint">Czeka na Ciebie ♡</span>
+          </button>
+
+          <button class="tile" type="button"
+            data-message="Nie musisz nikomu niczego udowadniać. Nie musisz być silna każdego dnia. Masz prawo odpocząć i po prostu być sobą. 🩷">
+            <span class="tile-icon">🦋</span>
+            <span class="tile-label">Kiedy masz gorszy dzień</span>
+            <span class="tile-hint">Otwórz mnie ♡</span>
+          </button>
+
+          <button class="tile" type="button"
+            data-message="Masz w sobie coś wyjątkowego, czego nie da się skopiować ani zastąpić. Świat jest ciekawszy, bo jesteś w nim właśnie Ty. ✨">
+            <span class="tile-icon">🌟</span>
+            <span class="tile-label">Twój ukryty superpower</span>
+            <span class="tile-hint">Odkryj sekret ♡</span>
+          </button>
+
+          <button class="tile" type="button"
+            data-message="Twoje uczucia mają znaczenie. Twoje granice mają znaczenie. Ty masz znaczenie. Nie pozwól nikomu wmówić Ci czegoś innego. 🌸">
+            <span class="tile-icon">🩷</span>
+            <span class="tile-label">Zapamiętaj to na zawsze</span>
+            <span class="tile-hint">Ważna wiadomość ♡</span>
+          </button>
+
+          <button class="tile" type="button"
+            data-message="Masz prawo do szczęścia, spokoju, śmiechu bez powodu i ludzi, przy których możesz być w stu procentach sobą. Zasługujesz na dobro. 🧸">
+            <span class="tile-icon">☁️</span>
+            <span class="tile-label">Twoje małe przypomnienie</span>
+            <span class="tile-hint">Kliknij mnie ♡</span>
+          </button>
+
+          <button class="tile" type="button"
+            data-message="Nawet jeśli dziś nic Ci nie wychodzi, nie oznacza to, że sobie nie poradzisz. Jeden trudny dzień nie definiuje całego Twojego życia. 🌈">
+            <span class="tile-icon">🌈</span>
+            <span class="tile-label">Na trudniejsze chwile</span>
+            <span class="tile-hint">Mam coś dla Ciebie ♡</span>
+          </button>
+
+          <button class="tile" type="button"
+            data-message="Twój uśmiech jest wart więcej niż tysiąc niepotrzebnych zmartwień. Obyś miała jak najwięcej powodów, żeby się śmiać. 🥹💕">
+            <span class="tile-icon">🌞</span>
+            <span class="tile-label">Mały powód do uśmiechu</span>
+            <span class="tile-hint">Odkryj mnie ♡</span>
+          </button>
+
+          <button class="tile" type="button"
+            data-message="Nie porównuj swojej drogi z drogą innych. Rozwijasz się we własnym tempie i nie musisz nikomu udowadniać, że jesteś wystarczająca. 🪷">
+            <span class="tile-icon">🪷</span>
+            <span class="tile-label">Jesteś wystarczająca</span>
+            <span class="tile-hint">Wiadomość dla Ciebie ♡</span>
+          </button>
+
+          <button class="tile" type="button"
+            data-message="Gdybyś mogła zobaczyć siebie oczami kogoś, kto dostrzega Twoje dobre strony, być może byłabyś dla siebie o wiele bardziej wyrozumiała. 💗">
+            <span class="tile-icon">🪞</span>
+            <span class="tile-label">Spójrz na siebie inaczej</span>
+            <span class="tile-hint">Czeka mała niespodzianka ♡</span>
+          </button>
+
+          <button class="tile" type="button"
+            data-message="Niech Ci się przytrafiają rzeczy, które sprawiają, że myślisz: kurczę, jak dobrze, że jestem właśnie tutaj. Niech życie daje Ci dużo pięknych chwil. 🌷">
+            <span class="tile-icon">🧚🏻‍♀️</span>
+            <span class="tile-label">Życzenie specjalnie dla Ciebie</span>
+            <span class="tile-hint">Otwórz i przeczytaj ♡</span>
+          </button>
+
+          <button class="tile" type="button"
+            data-message="A jeśli zapomnisz o wszystkich poprzednich wiadomościach, pamiętaj chociaż o tej: jesteś ważna. Jesteś wartościowa. I zasługujesz na dobro. Zawsze. ❤️">
+            <span class="tile-icon">💖</span>
+            <span class="tile-label">Najważniejsza wiadomość</span>
+            <span class="tile-hint">Zostawiłem ją na koniec ♡</span>
+          </button>
+
+        </div>
+
+        <div class="progress">
+          <div class="progress-top">
+            <span>Odkryte wiadomości 💌</span>
+            <span id="progressCount">0 / 12</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+
+        <div class="love-note" id="loveNote" aria-live="polite">
+          <span class="big-heart">💖</span>
+          <h2>Udało Ci się, Zuziu!</h2>
+          <p>
+            Odkryłaś wszystkie wiadomości! 🥹
+            Mam nadzieję, że choć przez chwilę zrobiło Ci się cieplej na serduszku.
+            Niech to będzie Twoje małe miejsce, do którego możesz wrócić,
+            kiedy będziesz potrzebować przypomnienia, jak wiele jesteś warta. 💗
+          </p>
+          <button class="replay-button" id="replayButton" type="button">
+            ❤️ Jeszcze raz, od początku
+          </button>
+        </div>
+
+        <div class="signature">
+          Zostawiam Ci tutaj trochę dobra na później.
+          <span class="signature-heart">♥</span>
+          Dla Ciebie, Zuziu. Po prostu. ♡
+        </div>
+
+        <div class="footer-hearts" aria-hidden="true">
+          ♡ 💗 ♡ 💕 ♡
+        </div>
+
+      </div>
+    </article>
+
+  </div>
+</div>
+
+<script>
+(() => {
+  const envelope = document.getElementById('mainEnvelope');
+  const world = document.getElementById('heartWorld');
+  const grid = document.getElementById('tilesGrid');
+  const tiles = [...document.querySelectorAll('.tile')];
+  const progressCount = document.getElementById('progressCount');
+  const progressFill = document.getElementById('progressFill');
+  const loveNote = document.getElementById('loveNote');
+  const replayButton = document.getElementById('replayButton');
+
+  let opened = false;
+  const discovered = new Set();
+
+  // Tworzenie serc bezpośrednio w tle.
+  const heartSymbols = ['♥', '♡', '💗', '💕', '❤', '✧', '💖'];
+
+  function createFloatingHeart() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const heart = document.createElement('span');
+    heart.className = 'floating-heart';
+    heart.textContent = heartSymbols[
+      Math.floor(Math.random() * heartSymbols.length)
+    ];
+
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.fontSize = (12 + Math.random() * 25) + 'px';
+    heart.style.setProperty('--duration', (9 + Math.random() * 10) + 's');
+    heart.style.setProperty('--drift', (-80 + Math.random() * 160) + 'px');
+    heart.style.setProperty('--rotation', (-180 + Math.random() * 360) + 'deg');
+    heart.style.setProperty('--heart-opacity', (.35 + Math.random() * .5).toFixed(2));
+
+    world.appendChild(heart);
+
+    heart.addEventListener('animationend', () => heart.remove(), { once: true });
+  }
+
+  for (let i = 0; i < 22; i++) {
+    setTimeout(createFloatingHeart, i * 180);
+  }
+
+  setInterval(createFloatingHeart, 520);
+
+  // Dekoracyjne gwiazdki.
+  for (let i = 0; i < 17; i++) {
+    const star = document.createElement('span');
+    star.className = 'sparkle';
+    star.textContent = Math.random() > .5 ? '✧' : '✦';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.fontSize = (10 + Math.random() * 15) + 'px';
+    star.style.animationDelay = Math.random() * 3 + 's';
+    document.body.appendChild(star);
+  }
+
+  // Eksplozja serc w miejscu kliknięcia.
+  function heartBurst(x, y, amount = 13) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    for (let i = 0; i < amount; i++) {
+      const heart = document.createElement('span');
+      heart.className = 'burst-heart';
+      heart.textContent = heartSymbols[
+        Math.floor(Math.random() * heartSymbols.length)
+      ];
+
+      const angle = (Math.PI * 2 * i / amount) + Math.random() * .4;
+      const distance = 45 + Math.random() * 100;
+
+      heart.style.setProperty('--x', x + 'px');
+      heart.style.setProperty('--y', y + 'px');
+      heart.style.setProperty('--dx', Math.cos(angle) * distance + 'px');
+      heart.style.setProperty('--dy', Math.sin(angle) * distance - 25 + 'px');
+      heart.style.setProperty('--rot', (-90 + Math.random() * 180) + 'deg');
+      heart.style.setProperty('--size', (14 + Math.random() * 17) + 'px');
+
+      document.body.appendChild(heart);
+      heart.addEventListener('animationend', () => heart.remove(), { once: true });
+    }
+  }
+
+  // Otwieranie koperty.
+  function openEnvelope() {
+    if (opened) return;
+
+    opened = true;
+    envelope.classList.add('open');
+
+    heartBurst(window.innerWidth / 2, window.innerHeight / 2, 24);
+
+    setTimeout(() => {
+      envelope.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 200);
+  }
+
+  envelope.addEventListener('click', (event) => {
+    if (!opened && !event.target.closest('.tile')) {
+      openEnvelope();
+    }
+  });
+
+  envelope.addEventListener('keydown', (event) => {
+    if (!opened && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      openEnvelope();
+    }
+  });
+
+  // Każdy kafelek odkrywa osobną wiadomość.
+  tiles.forEach((tile, index) => {
+    tile.addEventListener('click', () => {
+      if (!opened) openEnvelope();
+
+      if (discovered.has(index)) {
+        const rect = tile.getBoundingClientRect();
+        heartBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 7);
+        return;
+      }
+
+      discovered.add(index);
+      tile.classList.add('revealed');
+
+      const icon = tile.querySelector('.tile-icon');
+      const label = tile.querySelector('.tile-label');
+      const rect = tile.getBoundingClientRect();
+
+      icon.textContent = '💖';
+      label.textContent = tile.dataset.message;
+      tile.setAttribute('aria-label', tile.dataset.message);
+
+      heartBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
+
+      const count = discovered.size;
+      progressCount.textContent = count + ' / ' + tiles.length;
+      progressFill.style.width = (count / tiles.length * 100) + '%';
+
+      if (count === tiles.length) {
+        setTimeout(() => {
+          loveNote.classList.add('visible');
+          heartBurst(window.innerWidth / 2, window.innerHeight / 2, 28);
+        }, 450);
+      }
+    });
+  });
+
+  // Ponowne odkrywanie wszystkich wiadomości.
+  replayButton.addEventListener('click', () => {
+    discovered.clear();
+
+    tiles.forEach((tile) => {
+      tile.classList.remove('revealed');
+      tile.querySelector('.tile-icon').textContent =
+        tile.dataset.originalIcon || '💗';
+
+      tile.querySelector('.tile-label').textContent =
+        tile.dataset.originalLabel || '';
+
+      tile.querySelector('.tile-hint').style.display = 'block';
+      tile.removeAttribute('aria-label');
+    });
+
+    progressCount.textContent = '0 / ' + tiles.length;
+    progressFill.style.width = '0%';
+    loveNote.classList.remove('visible');
+
+    heartBurst(window.innerWidth / 2, window.innerHeight / 2, 20);
+
+    envelope.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Zapamiętanie oryginalnej zawartości kafelków.
+  tiles.forEach(tile => {
+    tile.dataset.originalIcon = tile.querySelector('.tile-icon').textContent;
+    tile.dataset.originalLabel = tile.querySelector('.tile-label').textContent;
+  });
+})();
+</script>
+
+</body>
+</html>
